@@ -1,0 +1,56 @@
+{
+  "clinics": [
+    {
+      "id": "ophthalmology",
+      "name_ar": "عيادة العيون",
+      "name_en": "Ophthalmology",
+      "floor": "2",
+      "requiresPIN": true
+    },
+    {
+      "id": "radiology",
+      "name_ar": "الأشعة",
+      "name_en": "Radiology",
+      "floor": "M",
+      "requiresPIN": true
+    },
+    {
+      "id": "laboratory",
+      "name_ar": "المختبر",
+      "name_en": "Laboratory",
+      "floor": "1",
+      "requiresPIN": false
+    }
+  ],
+  "exams": [
+    {
+      "id": "recruit",
+      "title_ar": "فحص التجنيد",
+      "title_en": "Recruitment Exam",
+      "clinicId": "laboratory"
+    },
+    {
+      "id": "annual",
+      "title_ar": "الفحص السنوي",
+      "title_en": "Annual Exam",
+      "clinicId": "radiology"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "bomussa",
+      "role": "superAdmin"
+    },
+    {
+      "id": "2",
+      "username": "contenter",
+      "role": "content_manager"
+    },
+    {
+      "id": "3",
+      "username": "flowman",
+      "role": "flow_manager"
+    }
+  ]
+}

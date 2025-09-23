@@ -1,0 +1,38 @@
+{
+  "welcome": {
+    "ar": "مرحبا بكم في اللجنة الطبية بالمركز الطبي التخصصي العسكري",
+    "en": "Welcome to the Medical Committee at the Military Medical Center",
+    "audio_ar": "welcome_ar.mp3",
+    "audio_en": "welcome_en.mp3"
+  },
+  "enter_id_gender": {
+    "ar": "يرجى إدخال الرقم العسكري أو الشخصي واختيار الجنس للمتابعة",
+    "en": "Please enter your military or personal number and select gender to continue",
+    "audio_ar": "enter_id_gender_ar.mp3",
+    "audio_en": "enter_id_gender_en.mp3"
+  },
+  "enter_exam_type": {
+    "ar": "يرجى إدخال نوع الفحص المطلوب",
+    "en": "Please enter the required exam type",
+    "audio_ar": "enter_exam_type_ar.mp3",
+    "audio_en": "enter_exam_type_en.mp3"
+  },
+  "path_assigned": {
+    "ar": "تم تحديد المسار الطبي للفحص يرجى الالتزام بالمسار المحدد",
+    "en": "The medical path has been assigned, please follow it strictly",
+    "audio_ar": "path_assigned_ar.mp3",
+    "audio_en": "path_assigned_en.mp3"
+  },
+  "exam_completed": {
+    "ar": "تم انتهاء الفحص الطبي بنجاح",
+    "en": "The medical exam has been successfully completed",
+    "audio_ar": "exam_completed_ar.mp3",
+    "audio_en": "exam_completed_en.mp3"
+  },
+  "clinic_redirect": {
+    "ar": "يرجى متابعة الفحص في العيادة البديلة حسب التوجيهات المعروضة على الشاشة.",
+    "en": "Please proceed to the alternate clinic as indicated on the screen.",
+    "audio_ar": "clinic_redirect_ar.mp3",
+    "audio_en": "clinic_redirect_en.mp3"
+  }
+}
