@@ -1,0 +1,12 @@
+file,status,notes
+MedicalCenter_PRODUCTION/server.js,FIXED,global cleanup
+MedicalCenter_PRODUCTION/setupTests.js,FIXED,global cleanup
+MedicalCenter_PRODUCTION/migrate.js,FIXED,global cleanup
+MedicalCenter_PRODUCTION/jobs/reportScheduler.js,FIXED,global cleanup
+MedicalCenter_PRODUCTION/frontend/src/components/FlowScreen.tsx,FIXED,global cleanup
+MedicalCenter_PRODUCTION/frontend/src/components/AdminAccounts.tsx,FIXED,global cleanup
+MedicalCenter_PRODUCTION/scripts/staticCheck.js,FIXED,global cleanup
+MedicalCenter_PRODUCTION/scripts/seed.js,FIXED,global cleanup
+MedicalCenter_PRODUCTION/scripts/migrate.js,FIXED,global cleanup
+MedicalCenter_PRODUCTION/scripts/qa/checkClinicRedirects.js,FIXED,global cleanup
+MedicalCenter_PRODUCTION/scripts/qa/checkVoiceGuide.js,FIXED,global cleanup

@@ -1,0 +1,20 @@
+<!doctype html><html lang="ar" dir="rtl"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>اللجنة الطبية – المراجع</title><link rel="stylesheet" href="/styles.css"/></head>
+<body><header><strong>اللجنة الطبية – المراجع</strong> <span class="flag" id="langFlag">AR</span></header>
+<main>
+<section class="card"><h3>بدء الفحص</h3>
+<div class="row">
+  <input id="idnum" placeholder="الرقم العسكري أو الشخصي"/>
+  <select id="gender"><option value="M">ذكر</option><option value="F">أنثى</option></select>
+  <select id="exam"><option value="fitness">لياقة</option><option value="recruit">تجنيد</option></select>
+  <button onclick="startExam()">بدء</button></div>
+<div class="row"><button onclick="toggleLang()">AR / EN</button><button onclick="toggleVoice()">تشغيل/إيقاف الصوت</button></div>
+<p class="muted small" id="notice"></p></section>
+<section class="card" id="routeCard" style="display:none"><h3>المسار الطبي</h3>
+<div id="routeBox" class="muted"></div>
+<div class="row"><input id="pin" placeholder="أدخل PIN"/><button onclick="enterClinic()">إدخال الـ PIN وفتح العيادة</button></div>
+<p class="muted small" id="hint"></p></section>
+<section class="card" id="doneCard" style="display:none"><h3>تم إنهاء الفحص</h3><p class="muted">تم إنهاء الفحص الطبي بنجاح. يمكنك طباعة التقرير.</p></section>
+<section class="card"><a href="/admin.html"><button>لوحة الإدارة</button></a></section>
+</main><footer>© Attar Medical</footer><script src="/js/app.js"></script></body></html>

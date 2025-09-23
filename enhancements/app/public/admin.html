@@ -1,0 +1,15 @@
+<!doctype html><html lang="ar" dir="rtl"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>لوحة الإدارة</title><link rel="stylesheet" href="/styles.css"/></head>
+<body><header><strong>لوحة الإدارة – Attar Medical</strong></header>
+<main>
+<section class="card"><h3>تسجيل الدخول</h3><div class="row">
+  <input id="u" placeholder="اسم المستخدم"/><input id="p" placeholder="كلمة المرور" type="password"/>
+  <button onclick="login()">دخول</button> <span id="authFlag" class="flag">غير مسجل</span></div>
+</section>
+<section class="card"><h3>أكواد PIN اليومية</h3><button onclick="loadPins()">عرض الأكواد</button><pre id="pinsBox" class="muted"></pre></section>
+<section class="card"><h3>تفعيل/إلغاء الفتح اليدوي (Override)</h3><div class="row"><button onclick="setOverride(true)">تفعيل</button><button onclick="setOverride(false)">إلغاء</button></div><pre id="ovBox" class="muted"></pre></section>
+<section class="card"><h3>النسخ الاحتياطي والإصلاح التلقائي</h3><div class="row">
+  <button onclick="backupNow()">نسخة احتياطية الآن</button><button onclick="restoreLatest()">استعادة آخر نسخة</button><button onclick="showBackups()">عرض النسخ</button><button onclick="showErrorLogs()">سجل الأخطاء</button></div>
+  <pre id="bkpBox" class="muted"></pre></section>
+</main><footer>© Attar Medical</footer><script src="/js/admin.js"></script></body></html>

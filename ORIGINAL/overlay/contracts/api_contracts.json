@@ -1,0 +1,52 @@
+{
+  "startExam": {
+    "request": {
+      "military_id": "string",
+      "gender": "Male|Female",
+      "exam_type": "string"
+    },
+    "response": {
+      "ok": "boolean",
+      "data": {
+        "session_id": "string",
+        "route": "string[]",
+        "notices": "string[]"
+      }
+    }
+  },
+  "enterClinic": {
+    "request": {
+      "session_id": "string",
+      "clinic": "string",
+      "pin": "string"
+    },
+    "response": {
+      "ok": "boolean",
+      "data": {
+        "opened": "boolean",
+        "next": "string|null"
+      }
+    }
+  },
+  "saveReport": {
+    "request": {
+      "session_id": "string",
+      "military_id": "string",
+      "exam_type": "string",
+      "route_completed": [
+        {
+          "clinic": "string",
+          "time_in": "string",
+          "time_out": "string"
+        }
+      ],
+      "end_time": "ISO8601"
+    },
+    "response": {
+      "ok": "boolean",
+      "data": {
+        "report_id": "string"
+      }
+    }
+  }
+}

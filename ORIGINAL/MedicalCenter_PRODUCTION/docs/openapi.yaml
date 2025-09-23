@@ -1,0 +1,387 @@
+openapi: 3.0.3
+info:
+  title: Al-Attar Military Medical Center API
+  version: 1.0.0
+  description: REST API for clinics, exams, and users.
+servers:
+- url: /api
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+  /clinics:
+    get:
+      summary: List clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Clinic'
+    post:
+      summary: Create clinic
+      responses:
+        '201':
+          description: Created
+  /exams:
+    get:
+      summary: List exams
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Exam'
+    post:
+      summary: Create exam
+      responses:
+        '201':
+          description: Created
+  /users/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Logged in
+  /clinics/{id}:
+    get:
+      summary: Get clinic
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update clinic
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+    delete:
+      summary: Delete clinic
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+  /exams/{id}:
+    get:
+      summary: Get exam
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update exam
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+    delete:
+      summary: Delete exam
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+  /analytics/overview:
+    get:
+      summary: Overview counts (clinics/exams/users/uptime)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /analytics/metrics:
+    get:
+      summary: Prometheus metrics (text/plain)
+      responses:
+        '200':
+          description: OK
+  /visits:
+    post:
+      summary: Create visit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                militaryId:
+                  type: string
+                gender:
+                  type: string
+                examId:
+                  type: string
+                clinicId:
+                  type: string
+                status:
+                  type: string
+                startTime:
+                  type: string
+                  format: date-time
+                endTime:
+                  type: string
+                  format: date-time
+              required:
+              - militaryId
+              - gender
+              - examId
+              - clinicId
+      responses:
+        '201':
+          description: Created
+  /visits/clinic/{clinicId}:
+    get:
+      summary: List clinic visits (no PII)
+      parameters:
+      - in: path
+        name: clinicId
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+  /visits/admin:
+    get:
+      summary: List all visits (admin)
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create visit (admin)
+      responses:
+        '201':
+          description: Created
+  /visits/{id}:
+    put:
+      summary: Update visit (admin)
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete visit (admin)
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+  /cms/config:
+    get:
+      summary: List app config entries
+      responses:
+        '200':
+          description: OK
+  /cms/config/{key}:
+    get:
+      summary: Get config by key
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Upsert config by key
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete config by key
+      responses:
+        '204':
+          description: Deleted
+  /cms/texts:
+    get:
+      summary: List texts
+      responses:
+        '200':
+          description: OK
+  /cms/texts/{key}:
+    get:
+      summary: Get text key
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Upsert text key
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete text key
+      responses:
+        '204':
+          description: Deleted
+  /cms/icons:
+    get:
+      summary: List icons
+      responses:
+        '200':
+          description: OK
+  /cms/icons/{id}:
+    get:
+      summary: Get icon
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Upsert icon
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete icon
+      responses:
+        '204':
+          description: Deleted
+  /cms/pages:
+    get:
+      summary: List pages
+      responses:
+        '200':
+          description: OK
+  /cms/pages/{id}:
+    get:
+      summary: Get page
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Upsert page
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete page
+      responses:
+        '204':
+          description: Deleted
+  /cms/routes:
+    get:
+      summary: List routes
+      responses:
+        '200':
+          description: OK
+  /cms/routes/{path}:
+    get:
+      summary: Get route
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Upsert route
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete route
+      responses:
+        '204':
+          description: Deleted
+components:
+  schemas:
+    Clinic:
+      type: object
+      properties:
+        id:
+          type: string
+        name_ar:
+          type: string
+        name_en:
+          type: string
+        floor:
+          type: string
+        requiresPIN:
+          type: boolean
+      required:
+      - id
+      - name_ar
+      - name_en
+    Exam:
+      type: object
+      properties:
+        id:
+          type: string
+        title_ar:
+          type: string
+        title_en:
+          type: string
+        clinicId:
+          type: string
+      required:
+      - id
+      - title_ar
+      - title_en
+      - clinicId
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        role:
+          type: string
+      required:
+      - id
+      - username
+      - role

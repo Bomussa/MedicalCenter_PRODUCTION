@@ -1,0 +1,112 @@
+import { Clinic } from "./clinics";
+
+type Flow = { id: Clinic["id"] }[];
+
+export const EXAMS = {
+  "exam.courses": {
+    name: "فحص الدورات التدريبية (الداخلية والخارجية)",
+    description: "فحص طبي للمشاركين في الدورات التدريبية",
+    icon: "📚",
+    male: [
+      { id: "clinic.lab" },
+      { id: "clinic.biometric" },
+      { id: "clinic.eye" },
+      { id: "clinic.internal" },
+      { id: "clinic.general_surgery" },
+      { id: "clinic.orthopedics" },
+      { id: "clinic.ent" },
+    ],
+    female: [
+      { id: "clinic.lab" },
+      { id: "clinic.biometric" },
+      { id: "clinic.ent" },
+      { id: "clinic.general_surgery" },
+      { id: "clinic.orthopedics" },
+      { id: "clinic.psychiatry" },
+      { id: "clinic.dental" },
+      { id: "clinic.internal" },
+      { id: "clinic.eye" },
+      { id: "clinic.dermatology" },
+    ],
+  },
+  "exam.recruit": {
+    name: "فحص التجنيد والترفيع والنقل والتحويل وتجديد التعاقد",
+    description: "فحص شامل للمتقدمين للخدمة العسكرية أو الترقيات",
+    icon: "📝",
+    male: [
+      { id: "clinic.lab" },
+      { id: "clinic.radiology" },
+      { id: "clinic.biometric" },
+      { id: "clinic.eye" },
+      { id: "clinic.internal" },
+      { id: "clinic.general_surgery" },
+      { id: "clinic.orthopedics" },
+      { id: "clinic.ent" },
+      { id: "clinic.psychiatry" },
+      { id: "clinic.dental" },
+    ],
+    female: [
+      { id: "clinic.lab" },
+      { id: "clinic.biometric" },
+      { id: "clinic.ent" },
+      { id: "clinic.general_surgery" },
+      { id: "clinic.orthopedics" },
+      { id: "clinic.psychiatry" },
+      { id: "clinic.dental" },
+      { id: "clinic.internal" },
+      { id: "clinic.eye" },
+      { id: "clinic.dermatology" },
+    ],
+  },
+  "exam.aviation": {
+    name: "فحص الطيران السنوي",
+    description: "فحص دوري لطياري وموظفي الطيران",
+    icon: "✈️",
+    male: [
+      { id: "clinic.lab" },
+      { id: "clinic.eye" },
+      { id: "clinic.internal" },
+      { id: "clinic.ent" },
+      { id: "clinic.ecg" },
+      { id: "clinic.audio" },
+    ],
+    female: [
+      { id: "clinic.lab" },
+      { id: "clinic.biometric" },
+      { id: "clinic.ent" },
+      { id: "clinic.general_surgery" },
+      { id: "clinic.orthopedics" },
+      { id: "clinic.psychiatry" },
+      { id: "clinic.dental" },
+      { id: "clinic.internal" },
+      { id: "clinic.eye" },
+      { id: "clinic.dermatology" },
+    ],
+  },
+  "exam.cooks": {
+    name: "فحص الطباخين",
+    description: "فحص صحي للعاملين في مجال تحضير الطعام",
+    icon: "👨‍🍳",
+    male: [
+      { id: "clinic.lab" },
+      { id: "clinic.internal" },
+      { id: "clinic.ent" },
+      { id: "clinic.general_surgery" },
+    ],
+    female: [
+      { id: "clinic.lab" },
+      { id: "clinic.biometric" },
+      { id: "clinic.ent" },
+      { id: "clinic.general_surgery" },
+      { id: "clinic.orthopedics" },
+      { id: "clinic.psychiatry" },
+      { id: "clinic.dental" },
+      { id: "clinic.internal" },
+      { id: "clinic.eye" },
+      { id: "clinic.dermatology" },
+    ],
+  },
+} as const satisfies Record<string, { name: string; description: string; icon: string; male: Flow; female: Flow }>;
+
+export const EXAM_IDS = Object.keys(EXAMS);
+

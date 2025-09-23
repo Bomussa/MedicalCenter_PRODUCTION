@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+    container_name: medical_api
+    image: medical-center-api:latest
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: medical_web
+    image: medical-center-web:latest
+    depends_on:
+      - api
+    ports:
+      - "80:80"
