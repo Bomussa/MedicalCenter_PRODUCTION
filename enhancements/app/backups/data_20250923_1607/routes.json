@@ -1,0 +1,16 @@
+{
+  "fitness": {
+    "order": [
+      "lab",
+      "internal",
+      "ophthalmology"
+    ]
+  },
+  "recruit": {
+    "order": [
+      "lab",
+      "radiology",
+      "internal"
+    ]
+  }
+}
