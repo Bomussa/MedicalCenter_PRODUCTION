@@ -1,0 +1,24 @@
+{
+  "main_title": "المركز الطبي التخصصي العسكري",
+  "id_number_placeholder": "الرقم العسكري أو الشخصي",
+  "pin_placeholder": "أدخل رمز PIN",
+  "male": "ذكر",
+  "female": "أنثى",
+  "continue_process": "متابعة العملية",
+  "toggle_language": "English",
+  "toggle_voice": "تشغيل/إيقاف الصوت",
+  "admin_panel": "لوحة الإدارة",
+  "language_changed": "تم تغيير اللغة إلى العربية.",
+  "voice_on": "تم تشغيل الصوت",
+  "voice_off": "تم إيقاف الصوت",
+  "error": "خطأ",
+  "female_reception_note": "تنويه: يرجى التوجه إلى استقبال الطابق الثالث للتسجيل. ",
+  "follow_medical_route": "يرجى اتباع المسار الطبي الموضح أدناه.",
+  "completed": "تم الانتهاء",
+  "enter_pin_hint": "أدخل رمز PIN من الممرضة/الطبيب للعيادة الحالية.",
+  "medical_route_set": "تم تحديد المسار الطبي. يرجى الالتزام بالمسار.",
+  "incorrect_pin": "PIN غير صحيح",
+  "route_complete": "اكتمل المسار.",
+  "exam_completed_successfully": "تم إنهاء الفحص الطبي بنجاح."
+}
+
