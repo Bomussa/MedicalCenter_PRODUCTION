@@ -295,4 +295,113 @@ router.get('/dashboard/data', (req, res) => {
     }
 });
 
+// إحصائيات الزيارات المبسطة
+router.get('/visit-stats', (req, res) => {
+    try {
+        const stats = {
+            totalVisits: 150,
+            todayVisits: 25,
+            activeVisits: 8,
+            avgWaitTime: 12,
+            completedToday: 17,
+            pendingToday: 8
+        };
+        
+        res.json({
+            ok: true,
+            data: stats
+        });
+    } catch (error) {
+        logger.error('Error getting visit stats:', error);
+        res.status(500).json({
+            ok: false,
+            error: 'خطأ في الحصول على الإحصائيات'
+        });
+    }
+});
+
+// المراقبة اللحظية
+router.get('/live-monitor', (req, res) => {
+    try {
+        const liveData = {
+            currentUsers: 12,
+            systemLoad: 45,
+            memoryUsage: 68,
+            activeConnections: 8,
+            lastUpdate: new Date().toISOString(),
+            clinicStatus: {
+                'clinic-1': { active: true, queue: 3, avgWait: 8 },
+                'clinic-2': { active: true, queue: 2, avgWait: 12 },
+                'clinic-3': { active: false, queue: 0, avgWait: 0 }
+            }
+        };
+        
+        res.json({
+            ok: true,
+            data: liveData
+        });
+    } catch (error) {
+        logger.error('Error getting live monitor data:', error);
+        res.status(500).json({
+            ok: false,
+            error: 'خطأ في الحصول على بيانات المراقبة'
+        });
+    }
+});
+
+// تصدير البيانات CSV
+router.get('/export-csv', (req, res) => {
+    try {
+        const csvData = `التاريخ,الوقت,رقم الهوية,نوع الفحص,العيادة,الحالة
+2024-09-24,09:30,1234567890,فحص شامل,العيادة الأولى,مكتمل
+2024-09-24,10:15,0987654321,فحص دوري,العيادة الثانية,جاري
+2024-09-24,11:00,1122334455,فحص تخصصي,العيادة الثالثة,منتظر`;
+        
+        res.json({
+            ok: true,
+            data: csvData
+        });
+    } catch (error) {
+        logger.error('Error exporting CSV:', error);
+        res.status(500).json({
+            ok: false,
+            error: 'خطأ في تصدير البيانات'
+        });
+    }
+});
+
+// تحليل حركة المراجعين
+router.get('/flow-analysis', (req, res) => {
+    try {
+        const flowData = {
+            hourlyFlow: [
+                { hour: '08:00', count: 5 },
+                { hour: '09:00', count: 12 },
+                { hour: '10:00', count: 18 },
+                { hour: '11:00', count: 15 },
+                { hour: '12:00', count: 8 }
+            ],
+            peakHours: ['10:00', '11:00'],
+            averageWaitByHour: {
+                '08:00': 5,
+                '09:00': 8,
+                '10:00': 15,
+                '11:00': 12,
+                '12:00': 6
+            }
+        };
+        
+        res.json({
+            ok: true,
+            data: flowData
+        });
+    } catch (error) {
+        logger.error('Error getting flow analysis:', error);
+        res.status(500).json({
+            ok: false,
+            error: 'خطأ في تحليل الحركة'
+        });
+    }
+});
+
 export default router;

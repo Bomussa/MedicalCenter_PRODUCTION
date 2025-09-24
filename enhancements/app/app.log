@@ -3,7 +3,7 @@ nohup: ignoring input
 > attar-med-fullstack@1.0.0 start
 > node server.js
 
-[32minfo[39m: Daily code job initialized {"service":"medical-center-app","timestamp":"2025-09-24 14:59:22"}
-[32minfo[39m: Recovery: monitoring_started - بدء مراقبة صحة النظام {"service":"medical-center-app","timestamp":"2025-09-24 14:59:22"}
-[32minfo[39m: Initial backup successful. {"service":"medical-center-app","timestamp":"2025-09-24 14:59:22"}
-[32minfo[39m: Fullstack server on http://localhost:4000 {"service":"medical-center-app","timestamp":"2025-09-24 14:59:22"}
+[32minfo[39m: Daily code job initialized {"service":"medical-center-app","timestamp":"2025-09-24 17:40:57"}
+[32minfo[39m: Recovery: monitoring_started - بدء مراقبة صحة النظام {"service":"medical-center-app","timestamp":"2025-09-24 17:40:57"}
+[32minfo[39m: Initial backup successful. {"service":"medical-center-app","timestamp":"2025-09-24 17:40:57"}
+[32minfo[39m: Fullstack server on http://localhost:4002 {"service":"medical-center-app","timestamp":"2025-09-24 17:40:57"}

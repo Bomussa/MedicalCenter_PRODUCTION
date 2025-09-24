@@ -3,8 +3,8 @@
   "cpuUsage": 0,
   "responseTime": 151,
   "errorRate": 0,
-  "diskSpace": 61,
-  "uptime": 170.405973753,
-  "lastHealthCheck": "2025-09-24T19:02:12.355Z",
+  "diskSpace": 59,
+  "uptime": 250.46778911,
+  "lastHealthCheck": "2025-09-24T21:43:18.477Z",
   "healthStatus": "healthy"
 }

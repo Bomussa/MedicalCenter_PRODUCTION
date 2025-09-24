@@ -1,0 +1,22 @@
+[
+  {
+    "id": "fitness",
+    "name_ar": "لياقة",
+    "name_en": "Fitness",
+    "route": [
+      "lab",
+      "internal",
+      "ophthalmology"
+    ]
+  },
+  {
+    "id": "recruit",
+    "name_ar": "تجنيد",
+    "name_en": "Recruit",
+    "route": [
+      "lab",
+      "radiology",
+      "internal"
+    ]
+  }
+]

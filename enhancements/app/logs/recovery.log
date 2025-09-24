@@ -1,1 +1,11 @@
 [2025-09-24T18:59:22.127Z] monitoring_started: بدء مراقبة صحة النظام
+[2025-09-24T21:38:45.873Z] shutdown_initiated: إيقاف تدريجي بسبب SIGTERM
+[2025-09-24T21:38:45.874Z] monitoring_stopped: توقف مراقبة صحة النظام
+[2025-09-24T21:38:49.468Z] monitoring_started: بدء مراقبة صحة النظام
+[2025-09-24T21:38:49.502Z] uncaughtException: listen EADDRINUSE: address already in use :::4000
+[2025-09-24T21:38:49.502Z] critical_error: خطأ حرج: listen EADDRINUSE: address already in use :::4000
+[2025-09-24T21:39:08.178Z] monitoring_started: بدء مراقبة صحة النظام
+[2025-09-24T21:40:41.561Z] monitoring_started: بدء مراقبة صحة النظام
+[2025-09-24T21:40:41.597Z] uncaughtException: listen EADDRINUSE: address already in use :::4001
+[2025-09-24T21:40:41.598Z] critical_error: خطأ حرج: listen EADDRINUSE: address already in use :::4001
+[2025-09-24T21:40:57.438Z] monitoring_started: بدء مراقبة صحة النظام

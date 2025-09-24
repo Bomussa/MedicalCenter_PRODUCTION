@@ -1,0 +1,12 @@
+{
+  "lang": "ar",
+  "overrideAllClinics": false,
+  "voice": {
+    "enabled": true,
+    "mode": "webspeech"
+  },
+  "ui": {
+    "brand": "Attar Medical",
+    "accent": "#175c76"
+  }
+}
