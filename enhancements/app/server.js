@@ -8,6 +8,7 @@ import { paths, backupNow, restoreLatestData } from './utils/autoHeal.js';
 import { config } from './config/index.js';
 import logger from './utils/logger.js'; // Import the new logger
 import dailyCodeJob from './jobs/dailyCodeJob.js';
+import recoveryService from './services/recoveryService.js';
 
 import authRoutes from './routes/authRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';

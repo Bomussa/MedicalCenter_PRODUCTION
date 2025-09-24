@@ -1,0 +1,26 @@
+{
+  "name": "medicalcenter_production",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:app": "npm --prefix enhancements/app run dev",
+    "build:app": "npm --prefix enhancements/app run build",
+    "preview:app": "npm --prefix enhancements/app run preview",
+    "dev:server": "node --watch server/index.js",
+    "start:server": "node server/index.js",
+    "dev": "concurrently -k -n FRONT,BACK \"npm:dev:app\" \"npm:dev:server\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "dependencies": {
+    "compression": "^1.8.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "mongoose": "^8.18.2",
+    "morgan": "^1.10.1"
+  }
+}
