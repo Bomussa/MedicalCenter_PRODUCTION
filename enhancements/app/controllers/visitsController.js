@@ -1,5 +1,6 @@
 import { readJson, writeJson } from "../models/index.js";
 import { dailyPin } from "../utils/pinGenerator.js";
+import { nanoid } from 'nanoid';
 
 export const enterClinic = (req, res) => {
     const { sessionId, pin } = req.body || {};

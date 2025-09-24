@@ -53,6 +53,9 @@
         <div class="row">
             <button id="langButton"><span data-i18n="toggle_language"></span> <i class="fas fa-globe"></i></button>
             <button id="voiceButton"><span data-i18n="toggle_voice"></span> <i class="fas fa-volume-up"></i></button>
+            <button id="voiceInstructionsBtn" onclick="voiceInstructions.speakWelcome()">
+                <i class="fas fa-volume-up"></i> <span>استمع للتعليمات</span>
+            </button>
         </div>
         <p class="muted small" id="notice"></p>
     </section>
@@ -80,6 +83,10 @@
     © Attar Medical
 </footer>
 <script type="module" src="/js/app.js"></script>
+<script src="/js/voiceInstructions.js"></script>
+<script src="/services/notificationService.js"></script>
+<script src="/utils/exportToCSV.js"></script>
+<script src="/js/performanceDashboard.js"></script>
 </body>
 </html>
 

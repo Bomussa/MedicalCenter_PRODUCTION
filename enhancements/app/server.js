@@ -7,12 +7,14 @@ import { fileURLToPath } from 'url';
 import { paths, backupNow, restoreLatestData } from './utils/autoHeal.js';
 import { config } from './config/index.js';
 import logger from './utils/logger.js'; // Import the new logger
+import dailyCodeJob from './jobs/dailyCodeJob.js';
 
 import authRoutes from './routes/authRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import patientRoutes from './routes/patientRoutes.js';
 import visitsRoutes from './routes/visitsRoutes.js';
 import reportRoutes from './routes/reportRoutes.js';
+import enhancementRoutes from './routes/enhancementRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -57,6 +59,7 @@ app.use('/admin', adminRoutes);
 app.use('/api/patient', patientRoutes);
 app.use('/api/visits', visitsRoutes);
 app.use('/print', reportRoutes);
+app.use('/api/enhancements', enhancementRoutes);
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 app.get('/ready', (_req, res) => res.json({ ok: true }));

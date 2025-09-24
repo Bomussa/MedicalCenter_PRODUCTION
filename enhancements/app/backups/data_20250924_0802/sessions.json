@@ -1,0 +1,42 @@
+[
+  {
+    "sessionId": "wFy7PGIjli",
+    "idNumber": "123456789",
+    "gender": "male",
+    "examType": "internal_external",
+    "route": [],
+    "current": 0,
+    "createdAt": 1758715219740
+  },
+  {
+    "sessionId": "KuYvmzDwzZ",
+    "idNumber": "123456789",
+    "gender": "male",
+    "examType": "internal_external_courses",
+    "route": [
+      "lab",
+      "biometrics",
+      "ophthalmology",
+      "internal",
+      "general_surgery",
+      "orthopedics",
+      "ent"
+    ],
+    "current": 1,
+    "createdAt": 1758715231745
+  },
+  {
+    "sessionId": "BVt6ZypIGK",
+    "idNumber": "987654321",
+    "gender": "female",
+    "examType": "cooks_exam",
+    "route": [
+      "lab",
+      "internal",
+      "ent",
+      "general_surgery"
+    ],
+    "current": 3,
+    "createdAt": 1758715294388
+  }
+]
