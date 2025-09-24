@@ -1,15 +1,131 @@
-<!doctype html><html lang="ar" dir="rtl"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>لوحة الإدارة</title><link rel="stylesheet" href="/styles.css"/></head>
-<body><header><strong>لوحة الإدارة – Attar Medical</strong></header>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>لوحة الإدارة - اللجنة الطبية العسكرية</title>
+    <link rel="stylesheet" href="/styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+        <img src="/medical-logo.webp" alt="شعار الخدمات الطبية" style="width: 60px; height: 60px;">
+        <div>
+            <h2 style="color: #1A3E7A; margin: 0; font-size: 18px;">اللجنة الطبية العسكرية بالخدمات الطبية</h2>
+            <h3 style="color: #00BFBF; margin: 0; font-size: 14px;">لوحة الإدارة - المركز الطبي التخصصي العسكري العطار</h3>
+        </div>
+    </div>
+</header>
+
 <main>
-<section class="card"><h3>تسجيل الدخول</h3><div class="row">
-  <input id="u" placeholder="اسم المستخدم"/><input id="p" placeholder="كلمة المرور" type="password"/>
-  <button onclick="login()">دخول</button> <span id="authFlag" class="flag">غير مسجل</span></div>
-</section>
-<section class="card"><h3>أكواد PIN اليومية</h3><button onclick="loadPins()">عرض الأكواد</button><pre id="pinsBox" class="muted"></pre></section>
-<section class="card"><h3>تفعيل/إلغاء الفتح اليدوي (Override)</h3><div class="row"><button onclick="setOverride(true)">تفعيل</button><button onclick="setOverride(false)">إلغاء</button></div><pre id="ovBox" class="muted"></pre></section>
-<section class="card"><h3>النسخ الاحتياطي والإصلاح التلقائي</h3><div class="row">
-  <button onclick="backupNow()">نسخة احتياطية الآن</button><button onclick="restoreLatest()">استعادة آخر نسخة</button><button onclick="showBackups()">عرض النسخ</button><button onclick="showErrorLogs()">سجل الأخطاء</button></div>
-  <pre id="bkpBox" class="muted"></pre></section>
-</main><footer>© Attar Medical</footer><script src="/js/admin.js"></script></body></html>
+    <section class="card">
+        <h3><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</h3>
+        <div class="row">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input id="u" placeholder="اسم المستخدم"/>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input id="p" placeholder="كلمة المرور" type="password"/>
+            </div>
+            <button onclick="login()" class="primary-btn">
+                <i class="fas fa-sign-in-alt"></i> دخول
+            </button>
+            <span id="authFlag" class="flag error">غير مسجل</span>
+        </div>
+    </section>
+
+    <section class="card">
+        <h3><i class="fas fa-key"></i> أكواد PIN اليومية</h3>
+        <div class="row">
+            <button onclick="loadPins()" class="info-btn">
+                <i class="fas fa-eye"></i> عرض الأكواد
+            </button>
+            <button onclick="generateNewCodes()" class="warning-btn">
+                <i class="fas fa-sync-alt"></i> توليد أكواد جديدة
+            </button>
+        </div>
+        <pre id="pinsBox" class="muted"></pre>
+    </section>
+
+    <section class="card">
+        <h3><i class="fas fa-cogs"></i> تفعيل/إلغاء الفتح اليدوي (Override)</h3>
+        <div class="row">
+            <button onclick="setOverride(true)" class="success-btn">
+                <i class="fas fa-unlock"></i> تفعيل
+            </button>
+            <button onclick="setOverride(false)" class="error-btn">
+                <i class="fas fa-lock"></i> إلغاء
+            </button>
+        </div>
+        <pre id="ovBox" class="muted"></pre>
+    </section>
+
+    <section class="card">
+        <h3><i class="fas fa-database"></i> النسخ الاحتياطي والإصلاح التلقائي</h3>
+        <div class="row">
+            <button onclick="backupNow()" class="primary-btn">
+                <i class="fas fa-save"></i> نسخة احتياطية الآن
+            </button>
+            <button onclick="restoreLatest()" class="warning-btn">
+                <i class="fas fa-undo"></i> استعادة آخر نسخة
+            </button>
+            <button onclick="showBackups()" class="info-btn">
+                <i class="fas fa-list"></i> عرض النسخ
+            </button>
+            <button onclick="showErrorLogs()" class="error-btn">
+                <i class="fas fa-exclamation-triangle"></i> سجل الأخطاء
+            </button>
+        </div>
+        <pre id="bkpBox" class="muted"></pre>
+    </section>
+
+    <section class="card">
+        <h3><i class="fas fa-chart-bar"></i> إحصائيات النظام</h3>
+        <div class="row">
+            <button onclick="loadSystemStats()" class="info-btn">
+                <i class="fas fa-chart-line"></i> عرض الإحصائيات
+            </button>
+            <button onclick="exportData()" class="success-btn">
+                <i class="fas fa-download"></i> تصدير البيانات
+            </button>
+        </div>
+        <div id="statsBox" class="stats-container"></div>
+    </section>
+
+    <section class="card">
+        <h3><i class="fas fa-tools"></i> أدوات النظام</h3>
+        <div class="row">
+            <button onclick="clearCache()" class="warning-btn">
+                <i class="fas fa-trash"></i> مسح التخزين المؤقت
+            </button>
+            <button onclick="restartServices()" class="error-btn">
+                <i class="fas fa-power-off"></i> إعادة تشغيل الخدمات
+            </button>
+            <button onclick="testConnections()" class="info-btn">
+                <i class="fas fa-network-wired"></i> اختبار الاتصالات
+            </button>
+        </div>
+        <pre id="toolsBox" class="muted"></pre>
+    </section>
+
+    <section class="card">
+        <div class="row">
+            <a href="/index.html">
+                <button class="secondary-btn">
+                    <i class="fas fa-home"></i> العودة للصفحة الرئيسية
+                </button>
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    © 2024 اللجنة الطبية العسكرية بالخدمات الطبية - المركز الطبي التخصصي العسكري العطار
+</footer>
+
+<script src="/js/admin.js"></script>
+</body>
+</html>
