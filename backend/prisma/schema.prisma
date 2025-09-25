@@ -1,93 +1,19 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-model Visitor {
-  id             Int      @id @default(autoincrement())
-  identifier     String
-  visitDate      DateTime
-  assignedClinic Int?
-  queueNumber    Int      @default(0)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  @@unique([identifier, visitDate], name: "unique_daily_identifier")
-}
-
-model Clinic {
-  id          Int      @id @default(autoincrement())
-  name        String
-  code        String   @unique
-  visits      Visit[]
-  pinCodes    PinCode[]
-  notes       Note[]
-}
-
-model Visit {
-  id            Int      @id @default(autoincrement())
-  visitorId     Int
-  clinicId      Int
-  examType      String
-  codeEntryTime DateTime
-  assignedTime  DateTime
-  visitDate     DateTime
-  visitor       Visitor  @relation(fields: [visitorId], references: [id])
-  clinic        Clinic   @relation(fields: [clinicId], references: [id])
-}
-
-model PinCode {
-  id        Int      @id @default(autoincrement())
-  clinicId  Int
-  date      DateTime
-  code      String
-  clinic    Clinic   @relation(fields: [clinicId], references: [id])
-
-  @@unique([clinicId, date])
-}
-
-model FeatureFlag {
-  id        Int      @id @default(autoincrement())
-  key       String   @unique
-  enabled   Boolean  @default(true)
-  label     String?
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-}
-
-model Note {
-  id        Int      @id @default(autoincrement())
-  clinicId  Int
-  text      String
-  createdAt DateTime @default(now())
-  clinic    Clinic   @relation(fields: [clinicId], references: [id])
-}
-
-model Notification {
-  id        Int      @id @default(autoincrement())
-  name      String
-  text      String
-  enabled   Boolean  @default(true)
-  createdAt DateTime @default(now())
-}
-
-model ErrorLog {
-  id        Int      @id @default(autoincrement())
-  message   String
-  context   String?
-  createdAt DateTime @default(now())
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model User {
   id           Int      @id @default(autoincrement())
   username     String   @unique
   passwordHash String
-  role         String
+  role         String   @default("ADMIN") // SUPER_ADMIN, ADMIN, DOCTOR, NURSE
   createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model AuditLog {
@@ -95,5 +21,51 @@ model AuditLog {
   actor     String
   action    String
   meta      String?
-  createdAt DateTime @default(now())
+  timestamp DateTime @default(now())
 }
+
+model Visitor {
+  id             Int      @id @default(autoincrement())
+  identifier     String   @unique
+  gender         String   // MALE, FEMALE
+  examType       String   // RECRUITMENT, PROMOTION, TRANSFER, CONVERSION, AVIATION, COOKS
+  assignedClinic String?
+  queueNumber    Int?
+  visitDate      DateTime @default(now())
+  status         String   @default("WAITING") // WAITING, IN_PROGRESS, COMPLETED, CANCELLED
+  visits         Visit[]
+}
+
+model Visit {
+  id            Int      @id @default(autoincrement())
+  visitorId     Int
+  clinicId      String
+  examType      String   // RECRUITMENT, PROMOTION, TRANSFER, CONVERSION, AVIATION, COOKS
+  codeEntryTime DateTime @default(now())
+  assignedTime  DateTime @default(now())
+  visitDate     DateTime @default(now())
+  status        String   @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED, SKIPPED
+  visitor       Visitor  @relation(fields: [visitorId], references: [id])
+}
+
+model Clinic {
+  id          String   @id
+  name        String
+  floor       String
+  capacity    Int      @default(30)
+  status      String   @default("ACTIVE") // ACTIVE, INACTIVE, MAINTENANCE
+  doctorName  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DailyCode {
+  id        Int      @id @default(autoincrement())
+  clinicId  String
+  code      String
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+  
+  @@unique([clinicId, date])
+}
+

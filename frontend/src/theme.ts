@@ -1,1 +1,0 @@
-export const theme={colors:{primary:"#1A3E7A",secondary:"#00BFBF",success:"#28A745",warning:"#FFC107",done:"#DC3545"},borderRadius:"12px",shadow:"0 2px 4px rgba(0,0,0,0.1)",fonts:{ar:"Cairo, Noto Kufi, sans-serif",en:"Inter, Roboto, sans-serif"}};

@@ -1,12 +1,19 @@
-import { Router } from "express";
-import { login, createAdmin, listUsers, ensureSuperAdmin } from "../controllers/authController";
-import { requireAuth, requireRole } from "../middleware/auth";
+import { Router } from 'express'
+import { login, createUser, listUsers, deleteUser, ensureSuperAdmin } from '../controllers/authController'
+import { requireAuth, requireRole } from '../middleware/auth'
 
-const router = Router();
-ensureSuperAdmin();
+const router = Router()
 
-router.post("/login", login);
-router.post("/users", requireAuth, requireRole("SUPER_ADMIN"), createAdmin);
-router.get("/users", requireAuth, requireRole("ADMIN"), listUsers);
+// Initialize super admin on startup
+ensureSuperAdmin()
 
-export default router;
+// Public routes
+router.post('/login', login)
+
+// Protected routes
+router.post('/users', requireAuth, requireRole('SUPER_ADMIN'), createUser)
+router.get('/users', requireAuth, requireRole('ADMIN'), listUsers)
+router.delete('/users/:id', requireAuth, requireRole('SUPER_ADMIN'), deleteUser)
+
+export default router
+

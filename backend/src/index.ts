@@ -1,28 +1,75 @@
-import express from "express";
-import cors from "cors";
-import { PrismaClient } from "@prisma/client";
-import visitorRouter from "./routes/visitor";
-import analyticsRouter from "./routes/analytics";
-import adminRouter from "./routes/admin";
-import authRouter from "./routes/auth";
-import examRouter from "./routes/exam";
-import { scheduleJobs } from "./cron/scheduler";
+import express from 'express'
+import cors from 'cors'
+import helmet from 'helmet'
+import morgan from 'morgan'
+import dotenv from 'dotenv'
+import { PrismaClient } from '@prisma/client'
 
-const app = express();
-export const prisma = new PrismaClient();
+// Routes
+import visitorRoutes from './routes/visitor'
+import authRoutes from './routes/auth'
+import adminRoutes from './routes/admin'
+import examRoutes from './routes/exam'
+import analyticsRoutes from './routes/analytics'
 
-app.use(cors());
-app.use(express.json());
+// Services
+import './cron/scheduler'
 
-app.use("/api/visitor", visitorRouter);
-app.use("/api/analytics", analyticsRouter);
-app.use("/api/admin", adminRouter);
-app.use("/api/auth", authRouter);
-app.use("/api/exams", examRouter);
+dotenv.config()
 
-scheduleJobs(prisma);
+export const prisma = new PrismaClient()
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`🚀 Backend running on http://localhost:${PORT}`);
-});
+const app = express()
+const PORT = process.env.PORT || 3001
+
+// Middleware
+app.use(helmet())
+app.use(cors({
+  origin: true,
+  credentials: true
+}))
+app.use(morgan('combined'))
+app.use(express.json({ limit: '10mb' }))
+app.use(express.urlencoded({ extended: true }))
+
+// Health check
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() })
+})
+
+// API Routes
+app.use('/api/visitor', visitorRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/admin', adminRoutes)
+app.use('/api/exam', examRoutes)
+app.use('/api/analytics', analyticsRoutes)
+
+// Error handling
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error('Error:', err)
+  res.status(500).json({ 
+    error: 'Internal Server Error',
+    message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+  })
+})
+
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'Route not found' })
+})
+
+// Start server
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running on http://0.0.0.0:${PORT}`)
+  console.log(`📊 Health check: http://0.0.0.0:${PORT}/health`)
+})
+
+// Graceful shutdown
+process.on('SIGINT', async () => {
+  console.log('🛑 Shutting down gracefully...')
+  await prisma.$disconnect()
+  process.exit(0)
+})
+
+export default app
+

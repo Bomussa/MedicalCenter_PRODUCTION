@@ -1,24 +1,36 @@
-import { Router } from "express";
-import { getFeatureFlags, setFeatureFlag, listNotes, addNote, listNotifications, upsertNotification, listTodayPins, regenTodayPins, verifyPin, reportsCsv, statsOverview, reportsPreview } from "../controllers/adminController";
-import { requireAuth, requireRole } from "../middleware/auth";
+import { Router } from 'express'
+import { requireAuth, requireRole } from '../middleware/auth'
+import {
+  getDashboardStats,
+  getCsvReport,
+  getReportPreviewData,
+  getAnalyticsData,
+  getDailyCodes,
+  generateNewCodes,
+  getAuditLogs
+} from '../controllers/adminController'
 
-const router = Router();
+const router = Router()
 
-router.get("/features", requireAuth, getFeatureFlags);
-router.post("/features", requireAuth, requireRole("ADMIN"), setFeatureFlag);
+// All admin routes require authentication
+router.use(requireAuth)
 
-router.get("/notes", requireAuth, listNotes);
-router.post("/notes", requireAuth, requireRole("ADMIN"), addNote);
+// Dashboard stats (accessible by ADMIN and above)
+router.get('/dashboard/stats', requireRole('ADMIN'), getDashboardStats)
 
-router.get("/notifications", requireAuth, listNotifications);
-router.post("/notifications", requireAuth, requireRole("ADMIN"), upsertNotification);
+// Reports (accessible by ADMIN and above)
+router.get('/reports/csv', requireRole('ADMIN'), getCsvReport)
+router.get('/reports/preview', requireRole('ADMIN'), getReportPreviewData)
 
-router.get("/pins/today", requireAuth, listTodayPins);
-router.post("/pins/regen", requireAuth, requireRole("ADMIN"), regenTodayPins);
-router.post("/pins/verify", verifyPin); // verification can be public for clinic terminals
+// Analytics (accessible by ADMIN and above)
+router.get('/analytics', requireRole('ADMIN'), getAnalyticsData)
 
-router.get("/reports/csv", requireAuth, reportsCsv);
-router.get("/reports/preview", requireAuth, reportsPreview);
-router.get("/stats/overview", requireAuth, statsOverview);
+// Daily codes (accessible by ADMIN and above)
+router.get('/codes', requireRole('ADMIN'), getDailyCodes)
+router.post('/codes/generate', requireRole('ADMIN'), generateNewCodes)
 
-export default router;
+// Audit logs (accessible by SUPER_ADMIN only)
+router.get('/audit-logs', requireRole('SUPER_ADMIN'), getAuditLogs)
+
+export default router
+
