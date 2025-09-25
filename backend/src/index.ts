@@ -11,6 +11,7 @@ import authRoutes from './routes/auth'
 import adminRoutes from './routes/admin'
 import examRoutes from './routes/exam'
 import analyticsRoutes from './routes/analytics'
+import auth2Routes from './modules/auth2/routes'
 
 // Services
 import './cron/scheduler'
@@ -43,6 +44,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/exam', examRoutes)
 app.use('/api/analytics', analyticsRoutes)
+app.use('/api/auth2', auth2Routes)
 
 // Error handling
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {

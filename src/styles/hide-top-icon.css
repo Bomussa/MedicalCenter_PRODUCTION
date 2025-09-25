@@ -1,0 +1,9 @@
+/* إخفاء أيقونة الرأس العلوية غير المطلوبة بدون حذف الكود */
+header .top-icon,
+.top-icon,
+.header-extra,
+.floating-icon,
+#top-mini-icon { 
+  display: none !important; 
+}
+

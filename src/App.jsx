@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.jsx'
@@ -7,6 +8,13 @@ import { Alert, AlertDescription } from '@/components/ui/alert.jsx'
 import { Progress } from '@/components/ui/progress.jsx'
 import { Stethoscope, Volume2, VolumeX, Settings, ArrowRight, Clock, CheckCircle } from 'lucide-react'
 import AdminPanel from './components/AdminPanel.jsx'
+import { ThemeProvider, useTheme } from './context/ThemeContext'
+import AdminApp from './new_admin/routes'
+import Header from './components/Header'
+import LogoComponent from './components/LogoComponent'
+import ExamTypeSelector from './components/ExamTypeSelector'
+import ClinicPath from './components/ClinicPath'
+import { examTypes, getClinicsForExam } from './data/medicalExams'
 import './App.css'
 
 function App() {
@@ -239,13 +247,14 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-4" dir="rtl">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
+        {/* Header with Logo */}
         <div className="text-center mb-6">
-          <div className="w-20 h-20 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
-            <Stethoscope className="text-white w-10 h-10" />
+          <div className="flex justify-center mb-4">
+            <LogoComponent size={80} showText={false} variant="gradient" />
           </div>
-          <h1 className="text-3xl font-bold text-blue-900 mb-2">المركز الطبي العسكري</h1>
-          <p className="text-blue-600 text-lg">نظام إدارة الفحوصات الطبية</p>
+          <h1 className="text-3xl font-bold text-blue-900 mb-2">المركز الطبي التخصصي العسكري – العطار</h1>
+          <p className="text-blue-600 text-lg">قسم اللجنة الطبية العسكرية</p>
+          <p className="text-blue-500 text-sm">نظام إدارة الفحوصات الطبية</p>
           
           {/* Admin Toggle */}
           <div className="mt-4">
@@ -437,4 +446,32 @@ function App() {
   )
 }
 
-export default App
+function AppWithTheme() {
+  const { theme } = useTheme();
+  
+  return (
+    <div style={{
+      fontFamily: `${theme.fonts.ar}, ${theme.fonts.en}`,
+      background: theme.colors.background,
+      color: theme.colors.text,
+      minHeight: '100vh'
+    }}>
+      <Router>
+        <Routes>
+          <Route path="/admin2" element={<AdminApp />} />
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </Router>
+    </div>
+  );
+}
+
+function AppWrapper() {
+  return (
+    <ThemeProvider>
+      <AppWithTheme />
+    </ThemeProvider>
+  );
+}
+
+export default AppWrapper
