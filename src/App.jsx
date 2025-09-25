@@ -37,12 +37,10 @@ function App() {
   ])
 
   const examTypes = [
-    { id: 'RECRUITMENT', name: 'تجنيد' },
-    { id: 'PROMOTION', name: 'ترفيع' },
-    { id: 'TRANSFER', name: 'نقل' },
-    { id: 'CONVERSION', name: 'تحويل' },
-    { id: 'AVIATION', name: 'طيران' },
-    { id: 'COOKS', name: 'طباخين' }
+    { id: 'INTERNAL_EXTERNAL_COURSES', name: 'الدورات الداخلية والخارجية' },
+    { id: 'RECRUITMENT_PROMOTION_TRANSFER', name: 'التجنيد والترفيع والنقل والتحويل وتجديد التعاقد' },
+    { id: 'AVIATION_ANNUAL', name: 'الطيران السنوي' },
+    { id: 'COOKS', name: 'الطباخين' }
   ]
 
   const clinics = [
@@ -77,6 +75,71 @@ function App() {
     setCurrentStep(2)
   }
 
+  const getClinicsByExamType = (examType, gender) => {
+    if (gender === 'female') {
+      // العنصر النسائي لجميع الفحوصات
+      return [
+        { id: 'lab', name: 'المختبر', floor: 'الميزانين' },
+        { id: 'vital_signs', name: 'القياسات الحيوية', floor: 'الطابق الثاني' },
+        { id: 'ent', name: 'الأنف والأذن والحنجرة', floor: 'الطابق الثاني' },
+        { id: 'general_surgery', name: 'الجراحة العامة', floor: 'الطابق الثاني' },
+        { id: 'orthopedics', name: 'العظام والمفاصل', floor: 'الطابق الثاني' },
+        { id: 'psychiatry', name: 'النفسية', floor: 'الطابق الثاني' },
+        { id: 'dentistry', name: 'الأسنان', floor: 'الطابق الثاني' },
+        { id: 'internal_medicine', name: 'الباطنية', floor: 'الطابق الثالث' },
+        { id: 'ophthalmology', name: 'العيون', floor: 'الطابق الثالث' },
+        { id: 'dermatology', name: 'الجلدية', floor: 'الطابق الثالث' }
+      ];
+    }
+
+    switch (examType) {
+      case 'INTERNAL_EXTERNAL_COURSES':
+        return [
+          { id: 'lab', name: 'المختبر', floor: 'الميزانين' },
+          { id: 'vital_signs', name: 'القياسات الحيوية', floor: 'الطابق الثاني' },
+          { id: 'ophthalmology', name: 'العيون', floor: 'الطابق الثاني' },
+          { id: 'internal_medicine', name: 'الباطنية', floor: 'الطابق الثاني' },
+          { id: 'general_surgery', name: 'الجراحة العامة', floor: 'الطابق الثاني' },
+          { id: 'orthopedics', name: 'العظام والمفاصل', floor: 'الطابق الثاني' },
+          { id: 'ent', name: 'الأنف والأذن والحنجرة', floor: 'الطابق الثاني' }
+        ];
+      
+      case 'RECRUITMENT_PROMOTION_TRANSFER':
+        return [
+          { id: 'lab_xray', name: 'المختبر والأشعة', floor: 'الميزانين' },
+          { id: 'vital_signs', name: 'القياسات الحيوية', floor: 'الطابق الثاني' },
+          { id: 'ophthalmology', name: 'العيون', floor: 'الطابق الثاني' },
+          { id: 'internal_medicine', name: 'الباطنية', floor: 'الطابق الثاني' },
+          { id: 'general_surgery', name: 'الجراحة العامة', floor: 'الطابق الثاني' },
+          { id: 'orthopedics', name: 'العظام والمفاصل', floor: 'الطابق الثاني' },
+          { id: 'ent', name: 'الأنف والأذن والحنجرة', floor: 'الطابق الثاني' },
+          { id: 'psychiatry', name: 'النفسية', floor: 'الطابق الثاني' },
+          { id: 'dentistry', name: 'الأسنان', floor: 'الطابق الثاني' }
+        ];
+      
+      case 'AVIATION_ANNUAL':
+        return [
+          { id: 'lab', name: 'المختبر', floor: 'الميزانين' },
+          { id: 'ophthalmology', name: 'العيون', floor: 'الطابق الثاني' },
+          { id: 'internal_medicine', name: 'الباطنية', floor: 'الطابق الثاني' },
+          { id: 'ent', name: 'الأنف والأذن والحنجرة', floor: 'الطابق الثاني' },
+          { id: 'ecg', name: 'تخطيط القلب', floor: 'الطابق الثاني' },
+          { id: 'audiology', name: 'السمع', floor: 'الطابق الثاني' }
+        ];
+      
+      case 'COOKS':
+        return [
+          { id: 'lab', name: 'المختبر', floor: 'الميزانين' },
+          { id: 'internal_medicine', name: 'الباطنية', floor: 'الطابق الثاني' },
+          { id: 'ent', name: 'الأنف والأذن والحنجرة', floor: 'الطابق الثاني' },
+          { id: 'general_surgery', name: 'الجراحة العامة', floor: 'الطابق الثاني' }
+        ];
+      
+      default:
+        return clinics;
+    }
+  }
+
   const handleExamSelection = (type) => {
     setExamType(type)
     setCurrentStep(3)
@@ -104,7 +167,8 @@ function App() {
   }
 
   const getProgress = () => {
-    return ((currentClinic) / clinics.length) * 100
+    const currentClinics = getClinicsByExamType(examType, gender);
+    return ((currentClinic) / currentClinics.length) * 100
   }
 
   const formatTime = (seconds) => {
@@ -366,7 +430,7 @@ function App() {
                 <div className="space-y-4">
                   <Progress value={getProgress()} className="h-3" />
                   <div className="text-center text-sm text-gray-600">
-                    {currentClinic} من {clinics.length} عيادات
+                    {currentClinic} من {getClinicsByExamType(examType, gender).length} عيادات
                   </div>
                 </div>
               </CardContent>
@@ -400,7 +464,7 @@ function App() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {clinics.map((clinic, index) => (
+                  {getClinicsByExamType(examType, gender).map((clinic, index) => (
                     <div 
                       key={clinic.id}
                       className={`flex items-center p-4 rounded-lg border-2 ${
