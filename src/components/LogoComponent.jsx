@@ -4,45 +4,30 @@ export default function LogoComponent({ size = 60, showText = true, variant = 'd
   const logoStyle = {
     width: size,
     height: size,
-    borderRadius: size * 0.2,
-    background: variant === 'gradient' 
-      ? 'linear-gradient(135deg, #1E88E5, #1565C0)' 
-      : '#1E88E5',
+    borderRadius: size * 0.1,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    boxShadow: "0 4px 12px rgba(30, 136, 229, 0.3)",
     position: "relative",
     overflow: "hidden"
   };
 
   const imageStyle = {
-    width: size * 0.8,
-    height: size * 0.8,
+    width: size,
+    height: size,
     objectFit: "contain",
-    filter: "brightness(0) invert(1)"
+    borderRadius: size * 0.1
   };
 
   return (
     <div style={{ display: "flex", alignItems: "center", gap: showText ? 16 : 0 }}>
-      {/* الشعار */}
+      {/* الشعار الحقيقي */}
       <div style={logoStyle}>
         <img 
-          src="/medical-logo.webp" 
-          alt="شعار المركز الطبي"
+          src="/medical-center-logo.jpg" 
+          alt="شعار المركز الطبي التخصصي العسكري - الخدمات الطبية"
           style={imageStyle}
         />
-        
-        {/* تأثير بصري إضافي */}
-        <div style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: "linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)",
-          pointerEvents: "none"
-        }} />
       </div>
       
       {/* النص */}
@@ -55,7 +40,7 @@ export default function LogoComponent({ size = 60, showText = true, variant = 'd
             fontFamily: "Cairo, sans-serif",
             lineHeight: 1.2
           }}>
-            المركز الطبي التخصصي العسكري
+            المركز الطبي التخصصي العسكري – العطار
           </div>
           <div style={{
             fontSize: size > 50 ? 14 : 12,
