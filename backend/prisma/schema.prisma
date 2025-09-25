@@ -1,0 +1,99 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Visitor {
+  id             Int      @id @default(autoincrement())
+  identifier     String
+  visitDate      DateTime
+  assignedClinic Int?
+  queueNumber    Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([identifier, visitDate], name: "unique_daily_identifier")
+}
+
+model Clinic {
+  id          Int      @id @default(autoincrement())
+  name        String
+  code        String   @unique
+  visits      Visit[]
+  pinCodes    PinCode[]
+  notes       Note[]
+}
+
+model Visit {
+  id            Int      @id @default(autoincrement())
+  visitorId     Int
+  clinicId      Int
+  examType      String
+  codeEntryTime DateTime
+  assignedTime  DateTime
+  visitDate     DateTime
+  visitor       Visitor  @relation(fields: [visitorId], references: [id])
+  clinic        Clinic   @relation(fields: [clinicId], references: [id])
+}
+
+model PinCode {
+  id        Int      @id @default(autoincrement())
+  clinicId  Int
+  date      DateTime
+  code      String
+  clinic    Clinic   @relation(fields: [clinicId], references: [id])
+
+  @@unique([clinicId, date])
+}
+
+model FeatureFlag {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique
+  enabled   Boolean  @default(true)
+  label     String?
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  clinicId  Int
+  text      String
+  createdAt DateTime @default(now())
+  clinic    Clinic   @relation(fields: [clinicId], references: [id])
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  name      String
+  text      String
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model ErrorLog {
+  id        Int      @id @default(autoincrement())
+  message   String
+  context   String?
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  role         String
+  createdAt    DateTime @default(now())
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  actor     String
+  action    String
+  meta      String?
+  createdAt DateTime @default(now())
+}

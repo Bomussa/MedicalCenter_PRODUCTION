@@ -1,0 +1,19 @@
+{
+  "voice.enterId": "Please enter your military or personal ID for verification",
+  "voice.nextStep": "Please proceed to the next clinic",
+  "banner.womenNotice": "For women: Floor X — Clinic Y — Gate Z",
+  "validation.invalidId": "Invalid ID format",
+  "validation.required": "Field is required",
+  "reports.exportCsv": "Export to CSV",
+  "reports.downloadPdf": "Download PDF",
+  "dashboard.dailyVisitors": "Daily Visitors",
+  "dashboard.averageWaitTime": "Average Wait Time",
+  "dashboard.clinicLoad": "Clinic Load",
+  "admin.features": "Feature Flags",
+  "admin.pins": "PIN Codes",
+  "admin.notes": "Notes",
+  "admin.notifications": "Notifications",
+  "admin.reports": "Reports",
+  "admin.stats": "Statistics",
+  "pin.invalid": "Invalid PIN (must be 1–2 digits)"
+}
